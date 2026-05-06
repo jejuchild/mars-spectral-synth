@@ -7,12 +7,14 @@
       4043
     ],
     "n_samples": 500000,
-    "mean": 30812.873046875,
-    "std": 5923.361328125,
-    "median": 30480.0
+    "mean_DN": 30812.873046875,
+    "std_DN": 5923.361328125,
+    "median_DN": 30480.0,
+    "unit": "16-bit DN (uncalibrated)"
   },
   "mastcam_z_left_radiance": {
     "n_files": 10,
+    "n_sols": 10,
     "n_combined_samples": 462493,
     "files": [
       {
@@ -196,13 +198,198 @@
         ]
       }
     ],
-    "mean": 0.02471947856247425,
-    "std": 0.012704472057521343,
-    "median": 0.02109772525727749
+    "mean_W_per_m2_sr_nm": 0.02471947856247425,
+    "std_W_per_m2_sr_nm": 0.012704472057521343,
+    "median_W_per_m2_sr_nm": 0.02109772525727749,
+    "unit": "W/m\u00b2/sr/nm (calibrated radiance, RASLN)",
+    "per_band_records": [
+      {
+        "sol": "sol00002",
+        "band": 0,
+        "mean": 0.017481336370110512,
+        "n": 1663044
+      },
+      {
+        "sol": "sol00002",
+        "band": 1,
+        "mean": 0.011069118045270443,
+        "n": 1663044
+      },
+      {
+        "sol": "sol00002",
+        "band": 2,
+        "mean": 0.006767791695892811,
+        "n": 1663044
+      },
+      {
+        "sol": "sol00003",
+        "band": 0,
+        "mean": 0.03215492516756058,
+        "n": 1644792
+      },
+      {
+        "sol": "sol00003",
+        "band": 1,
+        "mean": 0.026158258318901062,
+        "n": 1644792
+      },
+      {
+        "sol": "sol00003",
+        "band": 2,
+        "mean": 0.018563879653811455,
+        "n": 1644792
+      },
+      {
+        "sol": "sol00004",
+        "band": 0,
+        "mean": 0.03587391600012779,
+        "n": 1331479
+      },
+      {
+        "sol": "sol00004",
+        "band": 1,
+        "mean": 0.024527177214622498,
+        "n": 1331479
+      },
+      {
+        "sol": "sol00004",
+        "band": 2,
+        "mean": 0.01585104689002037,
+        "n": 1331479
+      },
+      {
+        "sol": "sol00009",
+        "band": 0,
+        "mean": 0.03928918018937111,
+        "n": 1665673
+      },
+      {
+        "sol": "sol00009",
+        "band": 1,
+        "mean": 0.03359236195683479,
+        "n": 1665673
+      },
+      {
+        "sol": "sol00009",
+        "band": 2,
+        "mean": 0.028369400650262833,
+        "n": 1665673
+      },
+      {
+        "sol": "sol00011",
+        "band": 0,
+        "mean": 0.030129259452223778,
+        "n": 1647656
+      },
+      {
+        "sol": "sol00011",
+        "band": 1,
+        "mean": 0.02538123168051243,
+        "n": 1647656
+      },
+      {
+        "sol": "sol00011",
+        "band": 2,
+        "mean": 0.018683550879359245,
+        "n": 1647656
+      },
+      {
+        "sol": "sol00012",
+        "band": 0,
+        "mean": 0.04246671125292778,
+        "n": 12493
+      },
+      {
+        "sol": "sol00012",
+        "band": 1,
+        "mean": 0.02739073894917965,
+        "n": 12493
+      },
+      {
+        "sol": "sol00012",
+        "band": 2,
+        "mean": 0.016735773533582687,
+        "n": 12493
+      },
+      {
+        "sol": "sol00015",
+        "band": 0,
+        "mean": 0.029572289437055588,
+        "n": 1366105
+      },
+      {
+        "sol": "sol00015",
+        "band": 1,
+        "mean": 0.01982836239039898,
+        "n": 1366105
+      },
+      {
+        "sol": "sol00015",
+        "band": 2,
+        "mean": 0.012877396307885647,
+        "n": 1366105
+      },
+      {
+        "sol": "sol00016",
+        "band": 0,
+        "mean": 0.027964379638433456,
+        "n": 1515058
+      },
+      {
+        "sol": "sol00016",
+        "band": 1,
+        "mean": 0.01890014111995697,
+        "n": 1515058
+      },
+      {
+        "sol": "sol00016",
+        "band": 2,
+        "mean": 0.012485334649682045,
+        "n": 1515058
+      },
+      {
+        "sol": "sol00022",
+        "band": 0,
+        "mean": 0.03502741828560829,
+        "n": 1330934
+      },
+      {
+        "sol": "sol00022",
+        "band": 1,
+        "mean": 0.023533839732408524,
+        "n": 1330934
+      },
+      {
+        "sol": "sol00022",
+        "band": 2,
+        "mean": 0.014583769254386425,
+        "n": 1330934
+      },
+      {
+        "sol": "sol00023",
+        "band": 0,
+        "mean": 0.0401001013815403,
+        "n": 1661042
+      },
+      {
+        "sol": "sol00023",
+        "band": 1,
+        "mean": 0.03514064848423004,
+        "n": 1661042
+      },
+      {
+        "sol": "sol00023",
+        "band": 2,
+        "mean": 0.03031109645962715,
+        "n": 1661042
+      }
+    ]
   },
   "wasserstein_1d": {
     "z_normalized": 0.2602821702965633,
+    "z_normalized_interpretation": "Distributional-shape distance after removing absolute calibration scale. ~0.26 means HiRISE intensity-distribution shape and Mastcam-Z broadband radiance distribution shape are similar after z-norm.",
     "raw_radiance": 30858.223082115972,
+    "raw_radiance_interpretation": "NOT PHYSICALLY MEANINGFUL. The two arrays live in different units (16-bit DN vs W/m\u00b2/sr/nm). Reported only to expose the unit gap; do not interpret as a domain-gap measurement.",
     "n_samples_compared": 50000
   },
   "honesty_note": "HiRISE RED is a 16-bit DN/I-over-F orbital image; Mastcam-Z RASLN is calibrated radiance in W/m\u00b2/sr/nm (different physical unit and band). We compare z-normalized distributions because the absolute scales are incomparable. This is NOT spectral synthesis \u2014 it is a distributional sanity check on real Mars data."

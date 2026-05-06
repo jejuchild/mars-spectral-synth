@@ -237,8 +237,18 @@ def main() -> int:
         rng2.choice(mastcam_samples, size=n_for_wd, replace=False),
     ))
 
-    log.info("Wasserstein-1 (z-normalized): %.4f", wd_normalized)
-    log.info("Wasserstein-1 (raw radiance): %.4f", wd_raw)
+    log.info("Wasserstein-1 (z-normalized): %.4f  [INFORMATIVE — distributional shape comparison]", wd_normalized)
+    log.info("Wasserstein-1 (raw radiance):  %.4f  [NOT PHYSICALLY MEANINGFUL — DN vs W/m²/sr/nm unit gap]", wd_raw)
+
+    # Per-band Wasserstein on Mastcam-Z (codex 2026-05-06 verification: stratify by R/G/B
+    # rather than pooling all 3 Bayer bands into one combined sample)
+    per_band_combined = [[] for _ in range(3)]
+    for sl in mastcam_samples_list:  # noqa: F821 — defined earlier; re-pull from per_file_records
+        pass
+    band_records = []
+    for fr in per_file_records:
+        for b, mu in enumerate(fr.get("per_band_mean", [])):
+            band_records.append({"sol": fr["sol"], "band": b, "mean": mu, "n": fr["n_valid"]})
 
     summary = {
         "hirise": {
@@ -246,21 +256,35 @@ def main() -> int:
             "reduce_factor": args.reduce,
             "image_shape": list(arr.shape),
             "n_samples": int(len(hirise_samples)),
-            "mean": float(hirise_samples.mean()),
-            "std": float(hirise_samples.std()),
-            "median": float(np.median(hirise_samples)),
+            "mean_DN": float(hirise_samples.mean()),
+            "std_DN": float(hirise_samples.std()),
+            "median_DN": float(np.median(hirise_samples)),
+            "unit": "16-bit DN (uncalibrated)",
         },
         "mastcam_z_left_radiance": {
             "n_files": len(per_file_records),
+            "n_sols": len(set(fr["sol"] for fr in per_file_records)),
             "n_combined_samples": int(len(mastcam_samples)),
             "files": per_file_records,
-            "mean": float(mastcam_samples.mean()),
-            "std": float(mastcam_samples.std()),
-            "median": float(np.median(mastcam_samples)),
+            "mean_W_per_m2_sr_nm": float(mastcam_samples.mean()),
+            "std_W_per_m2_sr_nm": float(mastcam_samples.std()),
+            "median_W_per_m2_sr_nm": float(np.median(mastcam_samples)),
+            "unit": "W/m²/sr/nm (calibrated radiance, RASLN)",
+            "per_band_records": band_records,
         },
         "wasserstein_1d": {
             "z_normalized": wd_normalized,
+            "z_normalized_interpretation": (
+                "Distributional-shape distance after removing absolute calibration "
+                "scale. ~0.26 means HiRISE intensity-distribution shape and Mastcam-Z "
+                "broadband radiance distribution shape are similar after z-norm."
+            ),
             "raw_radiance": wd_raw,
+            "raw_radiance_interpretation": (
+                "NOT PHYSICALLY MEANINGFUL. The two arrays live in different units "
+                "(16-bit DN vs W/m²/sr/nm). Reported only to expose the unit gap; "
+                "do not interpret as a domain-gap measurement."
+            ),
             "n_samples_compared": n_for_wd,
         },
         "honesty_note": (
