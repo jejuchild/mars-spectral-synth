@@ -1,0 +1,37 @@
+seed: 42
+data:
+  mode: synthetic
+  synthetic:
+    n_patches: 200
+    patch_size: 32
+    noise: 0.02
+  real:
+    hirise_dir: ../../data/HiRISE
+    mastcamz_dir: ../../data/Mastcam-Z
+    spice_kernel: ../../data/SPICE/m2020_coregister.tm
+    crism_dir: ../../data/CRISM
+    themis_dir: ../../data/THEMIS
+    meda_dir: ../../data/MEDA
+preprocess:
+  clip_reflectance: [0.0, 1.0]
+  use_dtm: true
+  use_geometry: true
+  use_atmospheric_tau: true
+model:
+  baselines: [ridge, random_forest, xgboost, mlp]
+  ridge:         {alpha: 1.0}
+  random_forest: {n_estimators: 80, max_depth: 12, n_jobs: 1}
+  xgboost:       {n_estimators: 100, max_depth: 6, n_jobs: 1, tree_method: hist}
+  mlp:           {hidden_layer_sizes: [64, 64], max_iter: 200, early_stopping: true}
+eval:
+  test_size: 0.2
+  band_centers_nm: [442, 528, 567, 605, 686, 754, 800, 866, 910, 939, 978]
+  core_band_indices: [3, 5, 6, 7, 8, 9, 10]
+  success_threshold:
+    mean_r2_core_synthetic: 0.4
+output:
+  artifacts_dir: artifacts
+  log_dir: logs
+runtime:
+  cpu_only: true
+  budget_seconds: 60

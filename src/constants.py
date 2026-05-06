@@ -1,0 +1,16 @@
+import numpy as np
+
+MASTCAMZ_BAND_CENTERS_NM = np.array(
+    [442, 528, 567, 605, 686, 754, 800, 866, 910, 939, 978], dtype=np.float32
+)
+N_MASTCAMZ_BANDS = 11
+
+HIRISE_BAND_NAMES = ("BG", "RED", "NIR_IR")
+HIRISE_BAND_CENTERS_NM = np.array([500.0, 700.0, 900.0], dtype=np.float32)
+N_HIRISE_BANDS = 3
+
+CORE_BAND_INDICES = (3, 5, 6, 7, 8, 9, 10)
+
+REFLECTANCE_VALID_RANGE = (0.0, 1.0)
+
+DEFAULT_SEED = 42
